@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>word analysis</title>
+    <link rel="stylesheet" href="styles.css" media="screen" charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="warningBox" id="warning">
+      <p class="warningText" id="warningText"></p>
+    </div>
+    <div class="title" id="title">
+      <h1>Word Analysis</h1>
+      <h2>A Zipfian Distributions Experiment</h2>
+    </div>
+    <div class="blurClick" id="blurClick">
+      <form class="mainForm" id="mainForm">
+        <p class="instr" id="instr">Insert text below:</p>
+        <textarea class="input" id="input" onkeypress="checkEnter(event)" placeholder="Remember, the longer the better!"></textarea>
+        <div class="analyse" id="analyse">Analyse</div>
+        <div class="toggles">
+          <div class="firstToggle" id="firstToggle">
+            <div class="firstTogglebg bgon" id="firstTogglebg"></div>
+            <div class="firstToggleSwitcher switcheron" id="firstToggleSwitcher"></div>
+          </div>
+          <p class="question removePunctuation" id="removePunctuation">Remove punctuation</p>
+          <div class="secondToggle" id="secondToggle">
+            <div class="secondTogglebg" id="secondTogglebg"></div>
+            <div class="secondToggleSwitcher" id="secondToggleSwitcher"></div>
+          </div>
+          <p class="question wiki questionDisabled" id="removeWiki">Remove wikipedia references</p>
+        </div>
+        <div class="enterContainer" id="enterContainer">
+          <p class="enterInstruction" id="enterInstruction">Press enter again to submit</p>
+          <div class="triangle" id="triangle"></div>
+        </div>
+
+        <div class="whiteBg"></div>
+      </form>
+      <div class="loading" id="loading">
+        <p class="working" id="working">Working...</p>
+      </div>
+      <div class="instructions" id="instructions">
+        <div class="scrollDown" id="scrollDown">
+          <svg id="ad08bb3d-7f25-4152-b64e-386dd75f9577" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440.8 336.93">
+            <defs>
+              <style>
+                .\33 adb4671-8fb6-421b-b5dc-7eee697686e2 {
+                  fill: none;
+                  stroke: #595959;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 40px;
+                }
+              </style>
+            </defs>
+            <title>double down chevron</title>
+            <polyline class="3adb4671-8fb6-421b-b5dc-7eee697686e2" points="420.8 20 220.4 220.4 20 20"/>
+            <polyline class="3adb4671-8fb6-421b-b5dc-7eee697686e2" points="420.8 116.53 220.4 316.93 20 116.53"/>
+          </svg>
+        </div>
+        <div class="introWrapper" id="introWrapper">
+          <h2>Introduction</h2>
+          <p>This tool is for exploring the patterns in word use accross the english langugae. Although it's primary use is with the Engligh langugae, it is possible to insert text from other languages and see similar results.</p>
+          <p> The first peculiarity about our language (and others) that can be seen when using this tool is that about 20% of unique words make up 80% of the total words in nearly any sizeable body of text.</p>
+          <p>Another peculiarity is that a Zipfian distribution can be observed in word usage.</p>
+          <br><hr><br>
+          <h2>Zipfian distributions</h2>
+          <p>Zipf's law is a statistical formula that can be used to describe many types of data observed in both the physical and social sciences. This can also be used to predict data patterns for seemingly random occurances.</p>
+          <p>To learn more about Zipfian distributions, <a target="_blank" href="https://en.wikipedia.org/wiki/Zipf%27s_law">read about it here</a>, or watch <a target="_blank" href="https://www.youtube.com/watch?v=fCn8zs912OE">this video</a> by Vasuce.</p>
+          <p>As it turns out, the most common words in the english language are: </p>
+          <div class="mostCommonWords" id="mostCommonWords">
+            <ul class="mostCommonWordsList">
+              <li>1. the</li>
+              <li>2. be</li>
+              <li>3. to</li>
+              <li>4. of</li>
+              <li>5. and</li>
+              <li>6. a</li>
+              <li>7. in</li>
+              <li>8. that</li>
+              <li>9. have</li>
+              <li>10. I</li>
+              <li>11. it</li>
+              <li>12. for</li>
+              <li>13. not</li>
+              <li>14. on</li>
+              <li>15. with</li>
+              <li>16. he</li>
+              <li>17. as</li>
+              <li>18. you</li>
+              <li>19. do</li>
+              <li>20. at</li>
+            </ul>
+          </div>
+          <br><hr><br>
+          <h2>Instructions</h2>
+          <p>To use this tool, simply type or paste words into the text box above. As with any statistical probability, the more words you use, the better. I would reccoment using a minimum of 100 words to start to see interesting results, although long passages of many thousands of words are preferred. To help you with this, I have included options to remove punctuation and wikipedia references for those pasting in text from wikipedia</p>
+          <p>On the results page, you will see a graph showing each different word in order of occurance, with the percentage of times it occurs in the text. If your passage follows a Zipfian distribution, you should see a curved graph, with about 80% of the words occuring in the first 20% of the graph.</p>
+          <p>Following this, there will be a section with 'cards' giving you more information about the text. Included are the most common words found in your piece of text, and the most frequent 'uncommon' words in your text.</p>
+
+      </div>
+    </div>
+  </div>
+    <div class="results" id="results">
+      <p class="reset" id="reset">reset</p>
+      <div class="graphConstraints" id="graphConstraints">
+        <p class="q4 perc" id="q4">100%</p>
+        <p class="q3 perc" id="q3">75%</p>
+        <p class="q2 perc" id="q2">50%</p>
+        <p class="q1 perc" id="q1">25%</p>
+        <div class="graph" id="graph">
+          <div class="wordNameConstraint" id="wordNameConstraint"></div>
+        </div>
+      </div>
+      <div class="moreWordsContainer" id="moreWordsContainer">
+        <div class="moreWordsTriangle" id="moreWordsTriangle"></div>
+        <p class="useMoreWords" id="useMoreWords">Try to use more words next time for more interesting results</p>
+      </div>
+      <div class="extraInfo" id="extraInfo">
+        <div class="extraInfoWrapper" id="extraInfoWrapper">
+          <div class="card">
+            <p class="totalWordsIntro" id="totalWords"></p>
+          </div>
+          <div class="card">
+            <p class="totalUniqueWords" id="totalUniqueWords">This is a test</p>
+          </div>
+            <ul class="tableCard topTenList" id="topTenList">
+              <p class="topTenExplenation" id="topTenExplenation">The list below is the top ten most used words in this piece of text</p>
+            </ul>
+            <div class="tableCard topTenUncommon" id="topTenUncommon">
+              <p class="topTenExplenation" id="topTenUncommonExpl">The list below represents the top ten 'uncommon' words found in this passage</p>
+            </div>
+          </div>
+      </div>
+      <p class="showInfo" id="showInfo">info</p>
+      <div class="infoPromptHidden" id="infoScrollPrompt">
+        <svg id="ad08bb3d-7f25-4152-b64e-386dd75f9577" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440.8 336.93">
+          <defs>
+            <style>
+              .\33 adb4671-8fb6-421b-b5dc-7eee697686e2 {
+                fill: none;
+                stroke: #595959;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 40px;
+              }
+            </style>
+          </defs>
+          <title>double down chevron</title>
+          <polyline class="3adb4671-8fb6-421b-b5dc-7eee697686e2" points="420.8 20 220.4 220.4 20 20"/>
+          <polyline class="3adb4671-8fb6-421b-b5dc-7eee697686e2" points="420.8 116.53 220.4 316.93 20 116.53"/>
+        </svg>
+      </div>
+    </div>
+    <div class="info" id="info">
+      <div class="infoWrapper" id="infoWrapper">
+        <h2>Zipfian distributions</h2>
+        <p>Zipf's law is a statistical formula that can be used to describe many types of data observed in both the physical and social sciences. This can also be used to predict data patterns for seemingly random occurances.</p>
+        <p>If your graph shows an exponential decrease in word use as you scroll left, then your text shows a Zipfian distribution in word use.</p>
+
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="scripts.js"></script>
+  <script type="text/javascript" src="loading.js"></script>
+</html>
