@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="word analysis" content="An engaging tool to spot intersting patterns in language and analyse word usage. This word analysis website allows you to copy and paste a passage of text to analyse the language, and graph the results to find a mathematical correlation between the word usage.">
     <title>word analysis</title>
     <link rel="stylesheet" href="styles.css" media="screen" charset="utf-8">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
@@ -26,10 +26,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="warningBox" id="warning">
       <p class="warningText" id="warningText"></p>
     </div>
-    <div class="title" id="title">
+    <header class="title" id="title">
       <h1>Word Analysis</h1>
       <h2>A Zipfian Distributions Experiment</h2>
-    </div>
+    </header>
     <div class="blurClick" id="blurClick">
       <form class="mainForm" id="mainForm">
         <p class="instr" id="instr">Insert text below:</p>
@@ -74,9 +74,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <div class="introWrapper" id="introWrapper">
           <h2>Introduction</h2>
-          <p>This tool is for exploring the patterns in word use accross the english langugae. Although it's primary use is with the Engligh langugae, it is possible to insert text from other languages and see similar results.</p>
-          <p> The first peculiarity about our language (and others) that can be seen when using this tool is that about 20% of unique words make up 80% of the total words in nearly any sizeable body of text.</p>
-          <p>Another peculiarity is that a Zipfian distribution can be observed in word usage.</p>
+          <h3>What are the patterns in word use in the english language? This website is for exploring the patterns in word use accross the english langugae. Although it's primary use is with the Engligh langugae, it is possible to insert text from other languages and see similar results.</p>
+          <h3>The first peculiarity about our language (and others) that can be seen when using this tool is that about 20% of unique words make up 80% of the total words in nearly any sizeable body of text. Does this mean that word occurance can be predicted? Yes, it can - the percentage occurance of a word in a piece of text is likely to be very similar to the same word's ranking in another piece of text.</p>
+          <h3>It is because of this Zipfian distribution in word usage that we can spot trends and apply a 'formula' to something as abstract as linguistic expression.</p>
           <br><hr><br>
           <h2>Zipfian distributions</h2>
           <p>Zipf's law is a statistical formula that can be used to describe many types of data observed in both the physical and social sciences. This can also be used to predict data patterns for seemingly random occurances.</p>
