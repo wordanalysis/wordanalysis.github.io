@@ -272,6 +272,7 @@ function analysis(toRemove){
   text = text.replace(/\n/g, " ");
   text = text.replace(/\s\s/g, " ");
   text = text.replace(/[.,\/#+*?!$%\^&\*;:{}=\-"_`'~()]/g,"");
+  text = text.replace(/['"]+/g, "");
   if (wikiCounter == 0){
     text = text.replace(/\[\]/g,"");
   }
