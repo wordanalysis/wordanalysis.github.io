@@ -474,6 +474,22 @@ var hadClicked = 0;
 var enterCount = 0;
 var keyCodevar;
 var disabled = 0;
+var enterDisabled = 0;
+
+function enterAction(){
+  if (analyse.className == "analyse analyseable"){
+    blurClick.style.transition = "700ms ease-in-out";
+    blurClick.style.left = "-10%";
+    blurClick.style.opacity = "0";
+    showResults();
+    disabled = 1;
+    setTimeout(function(){
+      analysis(1);
+    },10);
+  }
+  input.blur();
+  enterDisabled = 1;
+}
 
 if (disabled == 0){
 function checkEnter(e) {
@@ -487,15 +503,8 @@ function checkEnter(e) {
     }
 
     if (keyCodevar == 13 && enterCount == 1);
-      if (analyse.className == "analyse analyseable"){
-        blurClick.style.transition = "700ms ease-in-out";
-        blurClick.style.left = "-10%";
-        blurClick.style.opacity = "0";
-        showResults();
-        disabled = 1;
-        setTimeout(function(){
-          analysis(1);
-        },10);
+      if (enterDisabled == 0){
+        enterAction();
       }
       enterCount = 0;
       setTimeout(function() {
@@ -521,7 +530,9 @@ function checkEnter(e) {
   }
 }
 
-analyse.onclick = function(){
+var analyseDisable = 0;
+
+function analyseAction(){
   if (analyse.className == "analyse analyseable"){
     blurClick.style.transition = "700ms ease-in-out";
     blurClick.style.left = "-10%";
@@ -535,6 +546,13 @@ analyse.onclick = function(){
     setTimeout(function(){
       disabled = 0;
     },1000);
+  }
+  analyseDisable = 1;
+}
+
+analyse.onclick = function(){
+  if (analyseDisable == 0){
+    analyseAction();
   }
 }
 

@@ -722,3 +722,23 @@
   font-size: 1em;
   color: black;
 }
+
+.fb-share-button{
+  z-index: 40;
+  position: absolute;
+  top: 1150px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4267b2;
+  text-decoration: none;
+  font-family: Helvetica, sans-serif;
+  padding: 0.4em 0.5em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 4 00;
+}
+
+.fb-share-button a {
+  text-decoration: none;
+  color: white;
+}
