@@ -238,9 +238,6 @@ input.onblur = function() {
   input.className = "input";
 }
 
-
-//code to find the occurances of the words:
-
 function wordEntry(word, occurance) {
   this.word = word;
   this.occurance = occurance;
@@ -270,24 +267,23 @@ function checkUniq(a){
 
 function analysis(toRemove){
   resetInfoPosition();
-  text = input.value; //find the value of the text
-  text = text.substring(0, text.length - toRemove); //removes enter
+  text = input.value;
+  text = text.substring(0, text.length - toRemove);
   text = text.replace(/\n/g, " ");
   text = text.replace(/\s\s/g, " ");
-  text = text.replace(/[.,\/#+*?!$%\^&\*;:{}=\-_`~()]/g,""); //removes punctuation
+  text = text.replace(/[.,\/#+*?!$%\^&\*;:{}=\-_`~()]/g,"");
   if (wikiCounter == 0){
     text = text.replace(/\[\]/g,"");
   }
-  text = text.replace(/\s{2,}/g," "); //removes the space at the end
-  text = text.toLowerCase();  //makes all words lower case
+  text = text.replace(/\s{2,}/g," ");
+  text = text.toLowerCase();
   var lastChar = text.charAt(text.length - 1);
   if (lastChar == " "){
     text = text.substring(0, text.length - 1);
   }
-  //removes the space at the end
-  //console.log(text);
-  var crudeWords = text.split(" "); //assigns all the words to crude words
-  totalWords = crudeWords.length; //finds the length of crude words
+
+  var crudeWords = text.split(" ");
+  totalWords = crudeWords.length;
   totalWordsText.innerHTML = "Total Words: "+totalWords;
   if (totalWords < 100){
     moreWordsContainer.style.display = "block";
@@ -301,32 +297,32 @@ function analysis(toRemove){
       },1000);
     },4000);
   }
-  //iterator for i starts
+
   for (i=0;i<crudeWords.length;i+=1){
-    if (!(crudeWords[i] in words)){ //if a word in crude words is not present, it is added to that array
-    words[crudeWords[i]] = new wordEntry(crudeWords[i], 0); //a new word object is created
+    if (!(crudeWords[i] in words)){
+    words[crudeWords[i]] = new wordEntry(crudeWords[i], 0);
   }
 
-    var word = crudeWords[i]; //local variable is made equal to the current crude word
+    var word = crudeWords[i];
 
     for (j = 0; j<crudeWords.length; j++){
       if(word == crudeWords[j]) {
         words[crudeWords[i]].occurance++;
       }
     }
-  } //iterator ends
+  }
   for (i=0; i<crudeWords.length; i++){
     if (words[crudeWords[i]].occurance != 1){
       var sqrt = Math.sqrt(words[crudeWords[i]].occurance);
       if (sqrt % 1 == 0){
       words[crudeWords[i]].occurance = sqrt;
     }
-  } //resolves occurance error
+  }
 
     words[crudeWords[i]].percentage = ((words[crudeWords[i]].occurance/totalWords)*100).toFixed(3);
-    //finds the percentage of occurance
 
-  } //iterator ends
+
+  }
 
   var numUniqWords = Object.keys(words).length;
   var uniqueWords = checkUniq(crudeWords);
@@ -342,7 +338,6 @@ function analysis(toRemove){
   var leftMargin = 0;
   var q;
   for (q = 0; q < wordObjects.length; q++){
-    //console.log(wordObjects[q].word, wordObjects[q].occurance);
     wordObjects.sort(function(a,b){
       return parseFloat(a.occurance) - parseFloat(b.occurance);
     });
@@ -359,7 +354,6 @@ function analysis(toRemove){
     element.style.left = leftMargin+"px";
     element.style.height = scaledPercentage[tempCounter]+"%";
     graph.appendChild(element);
-    //console.log(wordObjects[q]);
     leftMargin += 40;
 
     var wordName = document.createElement('div');
@@ -421,7 +415,7 @@ function analysis(toRemove){
     strangeWord.appendChild(strangeOccuranceEntry);
     strangeList.appendChild(strangeWord);
   }
-  var topWordsCounter = 0//+crudeWords.length;
+  var topWordsCounter = 0;
 
   for (topWordsCounter; topWordsCounter<10; topWordsCounter++){
     var topWord = document.createElement('div');
@@ -439,8 +433,6 @@ function analysis(toRemove){
     if (topWordsCounter == 9 || topWordsCounter == wordObjects.length-1){
       break;
     }
-  //console.log(wordObjects[topWordsCounter])
-    //console.log(wordObjects);
   }
   calculating = 1;
   if (calculating == 1){
@@ -550,31 +542,6 @@ function checkEnter(e) {
   }
 }
 
-/*var analyseDisable = 0;
-
-function analyseAction(){
-  if (analyse.className == "analyse analyseable"){
-    blurClick.style.transition = "700ms ease-in-out";
-    blurClick.style.left = "-10%";
-    blurClick.style.opacity = "0";
-    showResults();
-    disabled = 1;
-    analysis(0);
-    }
-  }
-  if (disabled != 0){
-    setTimeout(function(){
-      disabled = 0;
-    },1000);
-  }
-  analyseDisable = 1;
-}
-
-analyse.onclick = function(){
-  if (analyseDisable == 0){
-    analyseAction();
-  }
-}*/
 }
 reset.onclick = function(){
   location.reload(true);
