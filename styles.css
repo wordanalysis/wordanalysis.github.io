@@ -726,6 +726,12 @@
 .fb-share-button{
   z-index: 40;
   position: relative;
+  text-align: center;
+}
+
+.mover {
+  z-index: 40;
+  position: relative;
   margin: 0 auto;
   margin-top: 70px;
   text-align: center;

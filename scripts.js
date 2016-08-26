@@ -576,3 +576,6 @@ analyse.onclick = function(){
   }
 }*/
 }
+reset.onclick = function(){
+  location.reload(true);
+}
