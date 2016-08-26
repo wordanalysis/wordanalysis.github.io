@@ -43,6 +43,7 @@ var resultsHeight = results.offsetHeight;
 var infoScrollPrompt = document.getElementById('infoScrollPrompt');
 var warningBox = document.getElementById('warning');
 var warningText = document.getElementById('warningText');
+var calculating = 0;
 
 function showScrollDown() {
   scrollDown.className = "scrollDown scrollDownShowing";
@@ -269,7 +270,6 @@ function checkUniq(a){
 
 function analysis(toRemove){
   resetInfoPosition();
-  working = 1;
   text = input.value; //find the value of the text
   text = text.substring(0, text.length - toRemove); //removes enter
   text = text.replace(/\n/g, " ");
@@ -442,13 +442,18 @@ function analysis(toRemove){
   //console.log(wordObjects[topWordsCounter])
     //console.log(wordObjects);
   }
+  calculating = 1;
+  if (calculating == 1){
+    loading.style.opacity = "0";
+    setTimeout(function(){
+      loading.style.display = "none";
+    },300);
   }
+}
 
-var working = 0;
 
 function showResults(){
   results.style.display = "block";
-  working = 2;
   setTimeout(function(){
     results.className = "results resultsShowing";
   },1);
@@ -476,15 +481,25 @@ var keyCodevar;
 var disabled = 0;
 var enterDisabled = 0;
 
+function loadingScreen() {
+  loading.style.display = "block";
+  setTimeout(function(){
+    loading.style.opacity = "1";
+  },1);
+}
+
 function enterAction(){
   if (analyse.className == "analyse analyseable"){
-    blurClick.style.transition = "700ms ease-in-out";
-    blurClick.style.left = "-10%";
-    blurClick.style.opacity = "0";
-    showResults();
-    disabled = 1;
+    loadingScreen();
     setTimeout(function(){
-      analysis(1);
+      blurClick.style.transition = "700ms ease-in-out";
+      blurClick.style.left = "-10%";
+      blurClick.style.opacity = "0";
+      showResults();
+      disabled = 1;
+      setTimeout(function(){
+        analysis(1);
+      },10);
     },10);
   }
   input.blur();
@@ -492,6 +507,11 @@ function enterAction(){
 }
 
 if (disabled == 0){
+
+analyse.onclick = function(){
+  enterAction();
+}
+
 function checkEnter(e) {
   keyCodevar = event.keyCode;
   if (keyCodevar == 13) {
@@ -530,7 +550,7 @@ function checkEnter(e) {
   }
 }
 
-var analyseDisable = 0;
+/*var analyseDisable = 0;
 
 function analyseAction(){
   if (analyse.className == "analyse analyseable"){
@@ -554,8 +574,5 @@ analyse.onclick = function(){
   if (analyseDisable == 0){
     analyseAction();
   }
-}
-
-reset.onclick = function(){
-  location.reload(true);
+}*/
 }
